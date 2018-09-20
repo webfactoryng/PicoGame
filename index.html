@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>Pico</title>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="timer"></div>
+<div class="mainbox">
+<div class="innerbox" id="one"><img src="images/zebra/6.jpg" width="100%" alt="6"></div>
+<div class="innerbox" id="two"><img src="images/zebra/4.jpg" width="100%" alt="4"></div>
+<div class="innerbox" id="three"><img src="images/zebra/8.jpg" width="100%" alt="8"></div>
+<div class="innerbox" id="four"><img src="images/zebra/9.jpg" width="100%" alt="9"></div>
+<div class="innerbox" id="five"><img src="images/zebra/1.jpg" width="100%" alt="1"></div>
+<div class="innerbox" id="six"><img src="images/zebra/2.jpg" width="100%" alt="2"></div>
+<div class="innerbox" id="seven"><img src="images/zebra/5.jpg" width="100%" alt="5"></div>
+<div class="innerbox" id="eight"><img src="images/zebra/7.jpg" width="100%" alt="7"></div>
+<div class="innerbox" id="nine"><img src="images/zebra/3.jpg" width="100%" alt="3"></div>
+</div>
+<div class="next">NEXT LEVEL</div>
+<img class="winner" src="images/winner.png" />
+<img class="gameover" src="images/gameover.png" />
+
+
+</body>
+</html>
+<script>
+// 6. Initialize window.localStorage.getItem("prev") value to "" on every load of page to mark beginning of game and ensure window.localStorage.getItem("prev") is empty
+window.localStorage.setItem("prev", "");
+
+// 1. On click of innerbox DIV
+$(".innerbox").click(function(){
+// 5. Run IF block only when window.localStorage.getItem("prev")  = "" to not first time click
+if(window.localStorage.getItem("prev") ==""){
+// 2a. Find image within THIS clicked DIV and add "highlight" class to it after click 
+$(this).find("img").addClass("highlight");
+// 3. Get innerbox ID value
+var boxclk = $(this).attr("id");
+// 4. Save value in localStorage
+window.localStorage.setItem("prev", boxclk);
+return false;
+}
+// 7. IF window.localStorage.getItem("prev") is NOT empty implies a click had already happened on "innerbox" and game as started.
+if(window.localStorage.getItem("prev") !=""){
+// 2b. Find image within THIS clicked DIV and add "highlight" class to it after click 
+$(this).find("img").addClass("highlight");
+// 8. String manipulaton . Create JQuery ID selector of  clicked DIV eg. "#one" and assign value to prev_id
+var prev_id = "#"+window.localStorage.getItem("prev") ;
+// 9. Get HTML content of previously clicked DIV eg $("#one").html() and assign value into previous_html
+var previous_html = $(prev_id).html();
+// 10. Get HTML content of currenly clicked DIV ie $(this) and assign value into current_html
+var current_html =  $(this).html();
+// 11. Switch previous with current DIV ie switching value of current_html and previous_html
+$(prev_id).html(current_html);
+$(this).html(previous_html);
+
+//  12. Delay execution for 1 sec, reset cycle and remove highlight class
+setTimeout(function(){
+window.localStorage.setItem("prev", "");
+$(".innerbox").find("img").removeClass("highlight");
+
+}, 1000);
+
+return false;
+}
+
+ });
+ 
+// 13. Count-down timer
+//Initiate count value to 60
+var count = 60;
+setInterval(function(){
+count = count - 1;
+$(".timer").text(count);
+//Terminate count down
+if(count==0 || count < 1){
+$(".gameover").show();
+$(".next").show();
+$(".mainbox").hide();
+$(".timer").hide();
+count = 1;
+}
+// 14. Winner
+var a = $(".mainbox img").eq(0).attr("alt");
+var b = $(".mainbox img").eq(1).attr("alt");
+var c = $(".mainbox img").eq(2).attr("alt");
+var d = $(".mainbox img").eq(3).attr("alt");
+var e = $(".mainbox img").eq(4).attr("alt");
+var f = $(".mainbox img").eq(5).attr("alt");
+var g = $(".mainbox img").eq(6).attr("alt");
+var h = $(".mainbox img").eq(7).attr("alt");
+var i = $(".mainbox img").eq(8).attr("alt");
+// 15. Right sequence
+var div_sequence = a+b+c+d+e+f+g+h+i;
+var img_sequence = "123456789";
+if(div_sequence == img_sequence){
+// 16. Show winner display
+$(".winner").show();
+$(".next").show();
+$(".mainbox").hide();
+$(".timer").hide();
+
+}
+}, 1000);
+
+// 17. Next Click
+$(".next").click(function(){
+location.href="index2.html";
+});
+</script>

@@ -1,0 +1,85 @@
+body{
+	background-color:white;
+	padding-top:80px;
+}
+.mainbox {
+width:96vw;
+height:96vw;
+display:block;
+position:relative;
+margin:auto;
+margin-top:1vh;
+background-color:white;
+
+
+}
+
+.innerbox{
+	width:31vw;
+	height:31vw;
+    background-color:magenta;
+	float:left;
+	margin-right:1vw;
+	margin-bottom:1vw;
+	position:relative;	
+}
+
+.highlight {
+	opacity:0.3;
+}
+
+.timer{
+	display:block;
+	width:100px;
+	padding:10px;
+	text-align:center;
+	border-radius:100px;
+	background-color:magenta;
+	margin:auto;
+	font-size:25px;
+}
+
+.next{
+	display:none;
+	width:98%;
+	padding-top:10px;
+	padding-bottom:10px;
+	text-align:center;
+	border-radius:100px;
+	color:white;
+	background-color:magenta;
+	margin:auto;
+	font-size:22px;
+	position:fixed;
+	bottom:20px;
+	right:1%;
+	left:1%;
+}
+
+.winner{
+	display:none;
+	position:fixed;
+	top:50%;
+	left:50%;
+	width:150px;
+	height:160px;
+	margin-left:-75px;
+	margin-top: -80px;
+	z-index:10;
+	
+}
+
+.gameover{
+	display:none;
+	position:fixed;
+	top:50%;
+	left:50%;
+	width:150px;
+	height:160px;
+	margin-left:-75px;
+	margin-top: -80px;
+	z-index:9;
+	
+}
+
+
