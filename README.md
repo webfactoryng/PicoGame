@@ -1,2 +1,2 @@
 # PicoGame
-Play game by tapping to swap image to reveal actual arrangement.
+Tap to swap image in order to reveal full image.
